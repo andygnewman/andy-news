@@ -6,3 +6,5 @@ var PostSchema = new mongoose.Schema({
   upvotes: {type: number, default: 0},
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 });
+
+mongoose.model('Post', PostSchema);
