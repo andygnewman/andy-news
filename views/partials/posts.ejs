@@ -1,0 +1,25 @@
+<section class="page-header">
+  <h3>
+    {{post.title}}
+    <a ng-show="post.link" href="{{post.link}}">{{post.link}}</a>
+  </h3>
+</section>
+
+<section class="add-comment-form">
+  <form ng-submit="addComment()" style="margin-top:30px;">
+    <h3>Add a new comment</h3>
+    <section class="form-group">
+      <input type="text" class="form-control" placeholder="Comment"
+        ng-model="body"></input>
+    </section>
+    <button type="submit" id="post-comment-button"class="btn btn-primary">
+      Post</button>
+  </form>
+</section>
+
+<section ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+  <span style="font-size:20px; margin-left:10px;">{{comment.body}}</span>
+   - by {{comment.author}}, upvotes: <span>{{comment.upvotes}}</span>
+  <span class="glyphicon glyphicon-thumbs-up"
+    ng-click="incrementCommentUpvotes(comment)"></span>
+</section>

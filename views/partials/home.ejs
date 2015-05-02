@@ -1,0 +1,36 @@
+<section class="page-header">
+  <h1>Andys 1st Angular App</h1>
+</section>
+
+<section class="page-header" id="welcome">
+  <h1>{{test}}</h1>
+</section>
+
+<section id="add-new-post" style="margin-top:30px;">
+  <form ng-submit="addPost()">
+    <h3>Add a new post</h3>
+    <section class="form-group">
+      <input id="new-post-title" type="text" ng-model="title"
+              class="form-control" placeholder="Title"></input>
+    </section>
+    <section class="form-group">
+    <input id="new-post-link" type="text" ng-model="link"
+            class="form-control" placeholder="Link"></input>
+    </section>
+    <button id="add-post-button" type="submit" class="btn btn-primary">
+      Post</button>
+  </form>
+</section>
+
+<section ng-repeat="post in posts | index | orderBy: '-upvotes'">
+  <p>Title: <span>{{post.title}}</span>
+    <span style="font-size:20px; margin-left:10px;"
+     ng-show="post.link">Link: <a href="{{post.link}}">{{post.link}}</a>
+    </span>
+     upvotes: <span>{{post.upvotes}} </span>
+    <span class="glyphicon glyphicon-thumbs-up"
+      ng-click="incrementUpvotes(post)"></span>
+    <span><a class="link-to-post" href="#/posts/{{post.index}}">
+      comments</a></span>
+  </p>
+</section>
