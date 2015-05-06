@@ -11,8 +11,8 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
-      'app/js/**/*.js',
-      'test/unit/**/*.js'
+      'public/javascripts/**/*.js',
+      'test/unit/angular/**/*.js'
     ],
 
     browsers : ['Chrome'],
