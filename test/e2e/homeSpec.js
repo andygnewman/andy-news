@@ -1,7 +1,7 @@
 describe("Andy's first angular app Home Page", function() {
 
   beforeEach(function() {
-    browser.get('app/index.html');
+    browser.get('#/home');
   });
 
   it('should have "Hello Andy!" on the page', function() {

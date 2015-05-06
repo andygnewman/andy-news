@@ -3,7 +3,7 @@ describe("Andy's first angular app - Posts Page", function() {
   describe("navigating to the post page", function() {
 
     it('should navigate to a specific post page when click comments', function() {
-      browser.get('app/index.html');
+      browser.get('#/home');
       var firstPost = element.all(by.repeater('post in posts')).first();
       var firstPostLink = firstPost.element(by.css('.link-to-post'));
       var firstPostTitle = firstPost.element(by.binding('post.title')).getText();
@@ -20,7 +20,7 @@ describe("Andy's first angular app - Posts Page", function() {
   describe("posts page", function() {
 
     beforeEach(function() {
-      browser.get('app/index.html#/posts/0');
+      browser.get('#/posts/0');
       element(by.model('body')).sendKeys('great post');
       element(by.id('post-comment-button')).click();
     });

@@ -7,7 +7,15 @@ var Comment = mongoose.model('Comment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Index' });
+});
+
+router.get('/partials/home.ejs', function(req, res, next) {
+  res.render('partials/home', { title: 'Home' });
+});
+
+router.get('/partials/posts.ejs', function(req, res, next) {
+  res.render('partials/posts', { title: 'Posts' });
 });
 
 router.get('/posts', function(req, res, next) {
