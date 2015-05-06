@@ -4,10 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var config = require('./config');
 var mongoose = require('mongoose');
 require('./models/Posts');
 require('./models/Comments');
-mongoose.connect('mongodb://localhost/andy-news');
+
+app.configure(function() {
+  app.set('dbUrl', config.db[app.settings.env]);
+  mongoose.connect(app.get('dbUrl'));
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
