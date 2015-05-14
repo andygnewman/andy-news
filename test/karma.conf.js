@@ -1,8 +1,6 @@
 module.exports = function(config) {
   config.set({
 
-    // autoWatch : false,
-
     basePath : '../',
 
     frameworks: ['jasmine'],
@@ -15,7 +13,7 @@ module.exports = function(config) {
       'test/unit/angular/**/*.js'
     ],
 
-    // browsers : ['Chrome'],
+    browsers : ['Chrome'],
 
     plugins : [
             'karma-chrome-launcher',
