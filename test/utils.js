@@ -1,6 +1,6 @@
 'use strict';
-
-var config = require('../config');
+var common = require('../common');
+var configure = common.configure();
 var mongoose = require('mongoose');
 
 process.env.NODE_ENV = 'test';
@@ -14,7 +14,7 @@ beforeEach(function(done) {
   }
 
   if (mongoose.connection.readyState === 0) {
-    mongoose.connect(config.db.test, function(err) {
+    mongoose.connect(configure.db, function(err) {
       if (err) {
         throw err;
       }
