@@ -1,4 +1,4 @@
-
+var utils = require('../utils');
 
 describe("Andy's first angular app Home Page", function() {
 
@@ -7,6 +7,7 @@ describe("Andy's first angular app Home Page", function() {
   });
 
   it('should have "Hello Andy!" on the page', function() {
+    console.log(process.env.NODE_ENV);
     expect(element(by.binding('test')).getText()).toBe('Hello Andy!');
   });
 
