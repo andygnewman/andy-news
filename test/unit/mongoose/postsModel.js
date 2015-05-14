@@ -2,9 +2,8 @@
 
 var utils = require('../../utils');
 var should = require('should');
-var mongoose = require('mongoose');
 
-var Post = require('../../../models/Posts').Post;
+var Post = require('../../../models/Posts');
 
 describe('Posts: models', function() {
 

@@ -12,4 +12,4 @@ CommentSchema.methods.upvote = function(callback) {
   this.save(callback);
 };
 
-exports.Comment = mongoose.model('Comment', CommentSchema);
+module.exports = mongoose.model('Comment', CommentSchema);

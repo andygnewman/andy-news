@@ -24,3 +24,9 @@ beforeEach(function(done) {
     return clearDB();
   }
 });
+
+after(function(done) {
+  mongoose.models = {};
+  mongoose.modelSchemas = {};
+  done();
+});

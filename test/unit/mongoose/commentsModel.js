@@ -2,9 +2,8 @@
 
 var utils = require('../../utils');
 var should = require('should');
-var mongoose = require('mongoose');
 
-var Comment = require('../../../models/Comments').Comment;
+var Comment = require('../../../models/Comments');
 
 describe('Comments: models', function() {
 
