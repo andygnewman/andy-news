@@ -12,7 +12,12 @@ andyNewsApp.config(['$stateProvider', '$urlRouterProvider',
         .state('home', {
           url: '/home',
           templateUrl: 'partials/home.ejs',
-          controller: 'MainCtrl'
+          controller: 'MainCtrl',
+          resolve: {
+            postPromise: ['postsFactory', function(postsFactory) {
+              return postsFactory.getAll();
+            }]
+          }
         })
         .state('posts', {
           url: '/posts/{id}',

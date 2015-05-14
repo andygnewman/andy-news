@@ -25,7 +25,7 @@ beforeEach(function(done) {
   }
 });
 
-after(function(done) {
+afterEach(function(done) {
   mongoose.models = {};
   mongoose.modelSchemas = {};
   done();

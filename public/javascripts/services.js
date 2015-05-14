@@ -3,7 +3,7 @@
 var andyNewsAppServices = angular.module('andyNewsAppServices', []);
 
 
-andyNewsAppServices.factory('postsFactory', [function() {
+andyNewsAppServices.factory('postsFactory', ['$http', function($http) {
   var o = {
     posts: [
             {title: 'post1', upvotes: 5, comments: []},
@@ -12,6 +12,11 @@ andyNewsAppServices.factory('postsFactory', [function() {
             {title: 'post4', upvotes: 9, comments: []},
             {title: 'post5', upvotes: 4, comments: []}
     ]
+  };
+  o.getAll = function() {
+    return $http.get('/posts').success(function(data) {
+      angular.copy(data, o.posts);
+    });
   };
   return o;
 }]);
