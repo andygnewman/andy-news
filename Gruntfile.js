@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.initConfig({
     jshint: {
@@ -17,10 +18,21 @@ module.exports = function(grunt) {
         },
         src: ['test/unit/mongoose/*.js']
       }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js'
+      },
+      continuous: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true,
+        browsers: ['Chrome']
+      }
     }
 
   });
 
 
-  grunt.registerTask('unitTest', ['mochaTest']);
+  grunt.registerTask('unitTest', ['mochaTest', 'karma:continuous']);
 };
