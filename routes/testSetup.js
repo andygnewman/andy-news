@@ -1,20 +1,23 @@
-'use strict';
+var express = require('express');
+var router = express.Router();
+
 var common = require('../common');
 var configure = common.configure();
 var mongoose = require('mongoose');
 
-process.env.NODE_ENV = 'test';
+var Post = mongoose.model('Post');
+var Comment = mongoose.model('Comment');
 
-beforeEach(function(done) {
+router.post('/purgeDbs', function(req, res, next) {
   function clearDB() {
     for (var i in mongoose.connection.collections) {
       mongoose.connection.collections[i].remove(function() {});
       console.log('cleared DB ' + i);
     }
-    return done();
+    return next();
   }
 
-  console.log('utils being used');
+  console.log('purgeDbs being used');
 
   if (mongoose.connection.readyState === 0) {
     mongoose.connect(configure.db, function(err) {
@@ -27,3 +30,5 @@ beforeEach(function(done) {
     return clearDB();
   }
 });
+
+module.exports = router;

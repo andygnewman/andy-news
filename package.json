@@ -25,6 +25,7 @@
     "karma-jasmine": "^0.3.5",
     "mocha": "*",
     "protractor": "^2.0.0",
+    "request": "^2.55.0",
     "should": ">= 0.0.1"
   },
   "dependencies": {

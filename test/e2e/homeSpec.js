@@ -1,12 +1,20 @@
-var utils = require('../utils');
+var request = require('request');
 
 describe("Andy's first angular app Home Page", function() {
 
   beforeEach(function() {
-    browser.get('#/home');
+    console.log(browser.baseUrl + 'test/purgeDbs');
+    var jar = request.jar();
+    var req = request.defaults({
+      jar : jar
+    });
+    req.post(browser.baseUrl + 'test/purgeDbs', function(error, message) {
+      console.log('Done call to testpurgeDbs');
+    });
   });
 
   it('should have "Hello Andy!" on the page', function() {
+    browser.get('#/home')
     expect(element(by.binding('test')).getText()).toBe('Hello Andy!');
   });
 
