@@ -1,3 +1,5 @@
+var utils = require('../utilProtractorDbTools');
+
 describe("Andy's first angular app - Posts Page", function() {
 
   describe("navigating to the post page", function() {
