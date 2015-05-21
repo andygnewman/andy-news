@@ -8,13 +8,13 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 
-router.post('/purgeDbs', function(req, res, next) {
+router.post('/purgeDbs', function(req, res, done) {
   function clearDB() {
     for (var i in mongoose.connection.collections) {
       mongoose.connection.collections[i].remove(function() {});
       console.log('cleared DB ' + i);
     }
-    return next();
+    res.json('completed');
   }
 
   console.log('purgeDbs being used');
