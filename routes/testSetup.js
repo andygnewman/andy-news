@@ -16,32 +16,39 @@ router.post('/purgeDbs', function(req, res, next) {
     res.json('completed');
   }
 
-  if (mongoose.connection.readyState === 0) {
-    mongoose.connect(configure.db, function(err) {
-      if (err) {
-        throw err;
-      }
+  if (process.env.NODE_ENV === 'test') {
+
+    if (mongoose.connection.readyState === 0) {
+      mongoose.connect(configure.db, function(err) {
+        if (err) {
+          throw err;
+        }
+        return clearDB();
+      });
+    } else {
       return clearDB();
-    });
+    }
   } else {
-    return clearDB();
+    res.send('Wrong environment');
   }
 });
 
 router.post('/populateDbs', function(req, res, next) {
-  var posts = [{title: 'post1', upvotes: 5, comments: []},
-                {title: 'post2', upvotes: 2, comments: []},
-                {title: 'post3', upvotes: 15, comments: []},
-                {title: 'post4', upvotes: 9, comments: []},
-                {title: 'post5', upvotes: 4, comments: []}
-              ];
-  for (i = 0; i < posts.length; i++) {
-    var post = new Post(posts[i]);
-    post.save();
+  if (process.env.NODE_ENV === 'test') {
+    var posts = [{title: 'post1', upvotes: 5, comments: []},
+                  {title: 'post2', upvotes: 2, comments: []},
+                  {title: 'post3', upvotes: 15, comments: []},
+                  {title: 'post4', upvotes: 9, comments: []},
+                  {title: 'post5', upvotes: 4, comments: []}
+                ];
+    for (i = 0; i < posts.length; i++) {
+      var post = new Post(posts[i]);
+      post.save();
+    }
+    res.json('completed');
+  } else {
+    res.send('Wrong Environment');
   }
-
-  res.json('completed');
-
 });
 
 module.exports = router;
