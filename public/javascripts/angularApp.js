@@ -24,8 +24,8 @@ andyNewsApp.config(['$stateProvider', '$urlRouterProvider',
           templateUrl: 'partials/posts.ejs',
           controller: 'PostsCtrl',
           resolve: {
-            post: ['$stateParams', 'postsFactory'
-            ,function($stateParams, postsFactory) {
+            post: ['$stateParams', 'postsFactory',
+              function($stateParams, postsFactory) {
               return postsFactory.getOne($stateParams.id);
             }]
           }
