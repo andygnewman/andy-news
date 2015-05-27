@@ -37,6 +37,6 @@ andyNewsAppControllers.controller('PostsCtrl',
         $scope.body = '';
       };
       $scope.incrementCommentUpvotes = function(comment) {
-        comment.upvotes += 1;
+        postsFactory.upvoteComment(post, comment);
       };
 }]);

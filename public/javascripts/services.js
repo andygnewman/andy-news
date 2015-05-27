@@ -18,7 +18,6 @@ andyNewsAppServices.factory('postsFactory', ['$http', function($http) {
   };
   o.getOne = function(id) {
     return $http.get('/posts/' + id).then(function(res) {
-      console.log('res.data', res.data);
       return res.data;
     });
   };
@@ -31,8 +30,8 @@ andyNewsAppServices.factory('postsFactory', ['$http', function($http) {
     return $http.post('/posts/' + id + '/comments', comment);
   };
   o.upvoteComment = function(post, comment) {
-    return $http.put('/posts/' + post._id + '/comments/'
-      + comment._id + '/upvote')
+    return $http.put('/posts/' + post._id + '/comments/' +
+      comment._id + '/upvote')
       .success(function(data) {
         comment.upvotes +=1;
       });

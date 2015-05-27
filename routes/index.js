@@ -64,6 +64,7 @@ router.put('/posts/:post/upvote', function(req, res, next) {
   var postToUpvote = Post.findById(req.params.post);
 
   postToUpvote.exec(function(err, post) {
+    if(err) { return next(err); }
     post.upvote(function(err, post) {
       if (err) { return next(err);}
       res.json(post);
@@ -74,16 +75,19 @@ router.put('/posts/:post/upvote', function(req, res, next) {
 
 router.post('/posts/:post/comments', function(req, res, next) {
   var comment = new Comment(req.body);
-  comment.post = req.post;
+  var commentPost = Post.findById(req.params.post);
 
-  comment.save(function(err, comment) {
+  commentPost.exec(function(err, post) {
     if(err) { return next(err); }
-
-    req.post.comments.push(comment);
-    req.post.save(function(err, post) {
+    comment.post = post;
+    comment.save(function(err, comment) {
       if(err) { return next(err); }
+      post.comments.push(comment);
+      post.save(function(err, post) {
+        if(err) { return next(err); }
 
-      res.json(comment);
+        res.json(comment);
+      });
     });
   });
 });
@@ -97,6 +101,20 @@ router.param('/comment', function(req, res, next, id) {
 
     req.comment = comment;
     return next();
+  });
+});
+
+router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
+  var commentToUpvote = Comment.findById(req.params.comment);
+
+  commentToUpvote.exec(function(err, comment) {
+    if(err) { return next(err); }
+    comment.upvote(function(err, comment) {
+      if(err) { return next(err); }
+
+      res.json(comment);
+    });
+
   });
 });
 
