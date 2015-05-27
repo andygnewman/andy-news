@@ -17,14 +17,14 @@ andyNewsAppControllers.controller('MainCtrl',
         $scope.link = '';
     };
     $scope.incrementUpvotes = function(post) {
-      post.upvotes += 1;
+      postsFactory.upvote(post);
     };
   }]);
 
 andyNewsAppControllers.controller('PostsCtrl',
-  ['$scope', '$stateParams', 'postsFactory',
-    function($scope, $stateParams, postsFactory) {
-      $scope.post = postsFactory.posts[$stateParams.id];
+  ['$scope', 'postsFactory', 'post',
+    function($scope, postsFactory, post) {
+      $scope.post = post;
       $scope.addComment = function() {
         if($scope.body === '') { return; }
         $scope.post.comments.push({

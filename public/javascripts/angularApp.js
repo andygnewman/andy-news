@@ -22,7 +22,13 @@ andyNewsApp.config(['$stateProvider', '$urlRouterProvider',
         .state('posts', {
           url: '/posts/{id}',
           templateUrl: 'partials/posts.ejs',
-          controller: 'PostsCtrl'
+          controller: 'PostsCtrl',
+          resolve: {
+            post: ['$stateParams', 'postsFactory'
+            ,function($stateParams, postsFactory) {
+              return postsFactory.getOne($stateParams.id);
+            }]
+          }
         });
 
       $urlRouteProvider.otherwise('home');
