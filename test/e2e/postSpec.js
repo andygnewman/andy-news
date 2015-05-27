@@ -22,9 +22,14 @@ describe("Andy's first angular app - Posts Page", function() {
   describe("posts page", function() {
 
     beforeEach(function() {
-      browser.get('#/posts/0');
-      element(by.model('body')).sendKeys('great post');
-      element(by.id('post-comment-button')).click();
+      browser.get('#/home');
+      var firstPost = element.all(by.repeater('post in posts')).first();
+      var firstPostLink = firstPost.element(by.css('.link-to-post'));
+      firstPostLink.getAttribute('href').then(function(attr) {
+          browser.get(attr);
+          element(by.model('body')).sendKeys('great post');
+          element(by.id('post-comment-button')).click();
+      });
     });
 
     it('should allow a new comment to be added', function() {
