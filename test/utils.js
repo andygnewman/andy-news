@@ -9,12 +9,9 @@ beforeEach(function(done) {
   function clearDB() {
     for (var i in mongoose.connection.collections) {
       mongoose.connection.collections[i].remove(function() {});
-      console.log('cleared DB ' + i);
     }
     return done();
   }
-
-  console.log('utils being used');
 
   if (mongoose.connection.readyState === 0) {
     mongoose.connect(configure.db, function(err) {

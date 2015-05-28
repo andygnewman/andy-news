@@ -14,19 +14,21 @@ describe('AndyNews Controllers', function() {
       expect(scope.test).toBe('Hello Andy!');
     });
 
-    it('should create "posts" with 5 posts in it', function() {
-      expect(scope.posts.length).toBe(5);
+    it('should initially have no posts in it', function() {
+      expect(scope.posts.length).toBe(0);
     });
 
     it('should allow a new post to be created', function() {
       scope.title = 'new post';
+      scope.link = 'http://www.test.com';
       scope.addPost();
-      expect(scope.posts.length).toBe(6);
+      expect(scope.posts.length).toBe(1); 
+
     });
 
     it('should not create a new post if no post text', function() {
       scope.addPost();
-      expect(scope.posts.length).toBe(5);
+      expect(scope.posts.length).toBe(0);
     });
 
     it('should allow upvotes to be incremented', function() {
